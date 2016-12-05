@@ -11,15 +11,14 @@ public class ProductFactory {
 		
 		if(!ProductCache.isProductPresent(productName)) {
 			ProductClassification productClassification;
-			if(!ProductClassificationCache.isProductClassificationPresent(demandHigh+supplyHigh)) {
-				productClassification = createClassification(demandHigh, supplyHigh);
-				ProductClassificationCache.add(demandHigh+supplyHigh, productClassification);
-			} else {
-				productClassification = ProductClassificationCache.getProductClassification(demandHigh+supplyHigh);
+			if(!ProductClassificationCache.isProductClassificationPresent(supplyHigh+demandHigh)) {
+				productClassification = createClassification(supplyHigh, demandHigh);
+				ProductClassificationCache.add(supplyHigh+demandHigh, productClassification);
 			}
-			ProductCache.add(productName, new Product(productName, productClassification));
-		} else {
 			
+			productClassification = ProductClassificationCache.getProductClassification(supplyHigh+demandHigh);
+			
+			ProductCache.add(productName, new Product(productName, productClassification));
 		}
 		
 		return ProductCache.getProduct(productName);

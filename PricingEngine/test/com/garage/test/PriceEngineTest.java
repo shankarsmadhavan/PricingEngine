@@ -22,10 +22,11 @@ public class PriceEngineTest {
 	@BeforeClass
 	public static void populateData() {
 		ProductFactory.createProduct("flashdrive", "H", "H");
-		ProductFactory.createProduct("ssd", "H", "L");
-		ProductFactory.createProduct("mp3Player", "L", "H");
-		//ProductFactory.createProduct("mp3Player", "H", "H");
-		ProductFactory.createProduct("sock", "L", "L");
+		ProductFactory.createProduct("ssd", "L", "L");
+		ProductFactory.createProduct("mp3Player", "H", "L");
+		ProductFactory.createProduct("sock", "L", "H");
+		ProductFactory.createProduct("jacket", "L", "H");
+		
 		
 		CompetitorPriceFactory.createCompetitorPrice("X", "flashdrive", 1.0);
 		CompetitorPriceFactory.createCompetitorPrice("Y", "flashdrive", 0.9);
@@ -33,10 +34,16 @@ public class PriceEngineTest {
 		CompetitorPriceFactory.createCompetitorPrice("Z", "flashdrive", 1.1);
 		CompetitorPriceFactory.createCompetitorPrice("X", "ssd", 10.0);
 		CompetitorPriceFactory.createCompetitorPrice("Y", "ssd", 12.5);
+		CompetitorPriceFactory.createCompetitorPrice("Z", "ssd", 11.0);
 		
-		CompetitorPriceFactory.createCompetitorPrice("Z", "mp3player", 60);
-		CompetitorPriceFactory.createCompetitorPrice("X", "mp3player", 20);
-		CompetitorPriceFactory.createCompetitorPrice("Y", "mp3player", 50);
+		
+		CompetitorPriceFactory.createCompetitorPrice("Z", "mp3Player", 60);
+		CompetitorPriceFactory.createCompetitorPrice("X", "mp3Player", 20);
+		CompetitorPriceFactory.createCompetitorPrice("Y", "mp3Player", 50);
+		
+		CompetitorPriceFactory.createCompetitorPrice("P", "jacket", 500);
+		CompetitorPriceFactory.createCompetitorPrice("Q", "jacket", 150);
+		CompetitorPriceFactory.createCompetitorPrice("R", "jacket", 350);
 
 	}
 	
@@ -46,6 +53,7 @@ public class PriceEngineTest {
 		Assert.assertEquals(true, ProductCache.isProductPresent("mp3Player"));
 		Assert.assertEquals(true, ProductCache.isProductPresent("ssd"));
 		Assert.assertEquals(true, ProductCache.isProductPresent("sock"));
+		Assert.assertEquals(true, ProductCache.isProductPresent("jacket"));
 	}
 	
 	@Test
@@ -61,6 +69,7 @@ public class PriceEngineTest {
 		Assert.assertEquals(true, ProductCompetativePriceCache.isProductPricePresent("flashdrive"));
 		Assert.assertEquals(true, ProductCompetativePriceCache.isProductPricePresent("ssd"));
 		Assert.assertEquals(false, ProductCompetativePriceCache.isProductPricePresent("sock"));
+		Assert.assertEquals(true, ProductCompetativePriceCache.isProductPricePresent("jacket"));
 	}
 	
 	
@@ -90,9 +99,10 @@ public class PriceEngineTest {
 	public void evaluatePriceEngine() {
 		Map<String, Double> map = new HashMap<>();
 		map.put("flashdrive", 0.9);
-		map.put("ssd", 10.5);
+		map.put("ssd", 11.0);
 		map.put("sock", null);
-		
+		map.put("mp3Player", 47.5);
+		map.put("jacket", 367.5);
 		map.put(null, null);
 		
 		
@@ -100,4 +110,5 @@ public class PriceEngineTest {
 			Assert.assertEquals(entry.getValue(), evaluatePriceEngine(entry.getKey()));
 		}
 	}
+	
 }

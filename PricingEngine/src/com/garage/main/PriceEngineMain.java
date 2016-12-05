@@ -28,15 +28,20 @@ public class PriceEngineMain {
 		
 		*/
 		//Input 2
-		
-		ProductFactory.createProduct("mp3player", "H", "H");
+		ProductFactory.createProduct("flashdrive", "H", "H");
+		ProductFactory.createProduct("mp3player", "L", "H");
 		ProductFactory.createProduct("ssd", "L", "L");
+		ProductFactory.createProduct("sock", "H", "L");
+		
 		
 		
 		CompetitorPriceFactory.createCompetitorPrice("X", "mp3player", 60.0);
 		CompetitorPriceFactory.createCompetitorPrice("Y", "mp3player", 20.0);
-		//CompetitorPriceFactory.createCompetitorPrice("Z", "mp3player", 45.0);
 		CompetitorPriceFactory.createCompetitorPrice("Z", "mp3player", 50.0);
+		
+		CompetitorPriceFactory.createCompetitorPrice("P", "sock", 8.0);
+		CompetitorPriceFactory.createCompetitorPrice("Q", "sock", 4.5);
+		CompetitorPriceFactory.createCompetitorPrice("R", "sock", 6.2);
 		
 		
 		CompetitorPriceFactory.createCompetitorPrice("W", "ssd", 11.0);
