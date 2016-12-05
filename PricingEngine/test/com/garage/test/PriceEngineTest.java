@@ -26,7 +26,7 @@ public class PriceEngineTest {
 		ProductFactory.createProduct("mp3Player", "H", "L");
 		ProductFactory.createProduct("sock", "L", "H");
 		ProductFactory.createProduct("jacket", "L", "H");
-		
+		ProductFactory.createProduct("xbox", "H", "H");
 		
 		CompetitorPriceFactory.createCompetitorPrice("X", "flashdrive", 1.0);
 		CompetitorPriceFactory.createCompetitorPrice("Y", "flashdrive", 0.9);
@@ -45,6 +45,9 @@ public class PriceEngineTest {
 		CompetitorPriceFactory.createCompetitorPrice("Q", "jacket", 150);
 		CompetitorPriceFactory.createCompetitorPrice("R", "jacket", 350);
 
+		CompetitorPriceFactory.createCompetitorPrice("P", "xbox", 900);
+		CompetitorPriceFactory.createCompetitorPrice("Q", "xbox", 100);
+		CompetitorPriceFactory.createCompetitorPrice("R", "xbox", 50);
 	}
 	
 	@Test
@@ -104,7 +107,7 @@ public class PriceEngineTest {
 		map.put("mp3Player", 47.5);
 		map.put("jacket", 367.5);
 		map.put(null, null);
-		
+		map.put("xbox", null);
 		
 		for(Map.Entry<String, Double> entry : map.entrySet()) {
 			Assert.assertEquals(entry.getValue(), evaluatePriceEngine(entry.getKey()));

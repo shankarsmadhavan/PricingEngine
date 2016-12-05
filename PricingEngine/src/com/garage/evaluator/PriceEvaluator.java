@@ -53,6 +53,7 @@ public class PriceEvaluator {
 					//System.out.println("Price = "+price +" is Valid "+validPrice);
 					
 				} while(!validPrice && prices.size() > 0);
+				if(!validPrice) price = null;
 			}
 			
 		}
@@ -112,7 +113,7 @@ public class PriceEvaluator {
 		
 		if (price != null) {
 			
-			//System.out.println("Avg = "+avg+ " avgHalf = "+avgHalf+" avgPlusHalf = "+avgPlusHalf+ " Competitor Price = "+cPrice+ " Evaluated Price = "+price);
+			System.out.println("Avg = "+avg+ " avgHalf = "+avgHalf+" avgPlusHalf = "+avgPlusHalf+ " Competitor Price = "+cPrice+ " Evaluated Price = "+price);
 				
 			if(price < avgHalf) {
 				System.out.println("Cannot Use Promotion Price");
